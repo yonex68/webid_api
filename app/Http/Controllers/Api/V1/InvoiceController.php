@@ -6,6 +6,7 @@ use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InvoiceCollection;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +15,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        return new InvoiceCollection(Invoice::orderBy('sent_at')->paginate(20));
     }
 
     /**
